@@ -1,21 +1,17 @@
 #include <Python.h>
-
-// Python's acme module
-PyObject* M_ACME;
-
-void setitem(char* k, char* v){
-    // TODO
-}
-
-char* getitem(char* k){
-    // TODO
-    return NULL;
-}
+#include "acme.h"
 
 void init(){
+    setenv("PYTHONPATH", ".", 1);
     Py_Initialize();
     PyObject* pName = PyString_FromString("acme");
-    M_ACME = PyImport_Import(pName);
+    PyObject* pAcme = PyImport_Import(pName);
     Py_DECREF(pName);
-    printf("%d\n", M_ACME == NULL);
+}
+
+void setsetter(setterfunc x){
+     setitem = x;
+}
+void setgetter(getterfunc x){
+     getitem = x;
 }
