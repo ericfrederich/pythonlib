@@ -7,7 +7,7 @@ test: test.c libacme.so
 	gcc -o test test.c -L. -lacme
 
 run: test
-	LD_LIBRARY_PATH=.:$LD_LIBRARYPATH ./test
+	LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test
 
 cleanrun: clean run
 
