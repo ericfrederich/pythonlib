@@ -8,6 +8,9 @@ ffi.cdef("""
     void setsetter(setterfunc);
     void setgetter(getterfunc);
     void setdumper(voidfunc);
+
+    // from man page
+    char *strdup(const char *s);
 """)
 C = ffi.dlopen(None)  
 
@@ -17,7 +20,8 @@ THE_DATA = {}
 @ffi.callback("char*(char*)")
 def getitem(k):
     k = ffi.string(k)
-    return ffi.new("char[]", THE_DATA[k])
+    # caller responsible for free'ing the memory
+    return C.strdup(ffi.new("char[]", THE_DATA[k]))
 
 @ffi.callback("void(char*, char*)")
 def setitem(k, v):
