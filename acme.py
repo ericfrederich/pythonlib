@@ -21,7 +21,7 @@ THE_DATA = {}
 def getitem(k):
     k = ffi.string(k)
     # caller responsible for free'ing the memory
-    return C.strdup(ffi.new("char[]", THE_DATA[k]))
+    return C.strdup(THE_DATA[k])
 
 @ffi.callback("void(char*, char*)")
 def setitem(k, v):
