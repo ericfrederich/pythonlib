@@ -10,8 +10,11 @@ void init(){
 }
 
 void setsetter(setterfunc x){
-     setitem = x;
+    setitem = x;
 }
 void setgetter(getterfunc x){
-     getitem = x;
+    getitem = x;
+}
+void setdumper(voidfunc x){
+    dump = x;
 }
